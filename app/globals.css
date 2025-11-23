@@ -1,22 +1,75 @@
 @import "tailwindcss";
 
 :root {
-  --background: #0f172a;
-  --foreground: #f8fafc;
+  --background: #0a0f1a;
+  --background-secondary: #111827;
+  --foreground: #f1f5f9;
+  --foreground-muted: #94a3b8;
+  --accent: #22c55e;
+  --accent-hover: #16a34a;
+  --accent-soft: rgba(34, 197, 94, 0.1);
+  --sunrise: linear-gradient(135deg, #1e3a5f 0%, #2d4a6f 25%, #e8985e 60%, #f5c77e 100%);
+  --card-bg: #1a2332;
+  --card-border: #2a3444;
+  --premium-gold: #fbbf24;
 }
 
 @theme inline {
   --color-background: var(--background);
+  --color-background-secondary: var(--background-secondary);
   --color-foreground: var(--foreground);
-  --color-primary: #1e40af;
-  --color-teal: #0d9488;
-  --color-orange: #f97316;
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-foreground-muted: var(--foreground-muted);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-soft: var(--accent-soft);
+  --color-card-bg: var(--card-bg);
+  --color-card-border: var(--card-border);
+  --color-premium-gold: var(--premium-gold);
+  --font-sans: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+  line-height: 1.6;
+}
+
+/* Sunrise gradient for hero image */
+.sunrise-gradient {
+  background: var(--sunrise);
+}
+
+/* Soft glow effect for CTAs */
+.glow-accent {
+  box-shadow: 0 0 40px rgba(34, 197, 94, 0.3);
+}
+
+/* Card hover effects */
+.card-hover {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* Stat counter animation */
+@keyframes countUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-count {
+  animation: countUp 0.6s ease-out forwards;
 }

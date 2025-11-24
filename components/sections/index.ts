@@ -1,0 +1,10 @@
+export { default as Hero } from './Hero';
+export { default as Specificity } from './Specificity';
+export { default as ScientificProof } from './ScientificProof';
+export { default as Transformation } from './Transformation';
+export { default as HowItWorks } from './HowItWorks';
+export { default as SocialProof } from './SocialProof';
+export { default as Pricing } from './Pricing';
+export { default as FAQ } from './FAQ';
+export { default as FinalCTA } from './FinalCTA';
+export { default as Footer } from './Footer';

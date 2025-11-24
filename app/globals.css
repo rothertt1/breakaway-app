@@ -2,21 +2,189 @@
 
 :root {
   --background: #0f172a;
-  --foreground: #f8fafc;
+  --background-secondary: #1e293b;
+  --background-dark: #0a0f1e;
+  --foreground: #f1f5f9;
+  --foreground-muted: #94a3b8;
+  --orange: #f97316;
+  --orange-light: #fb923c;
+  --teal: #0d9488;
+  --green: #10b981;
+  --red: #ef4444;
+  --white: #ffffff;
 }
 
 @theme inline {
   --color-background: var(--background);
+  --color-background-secondary: var(--background-secondary);
+  --color-background-dark: var(--background-dark);
   --color-foreground: var(--foreground);
+  --color-foreground-muted: var(--foreground-muted);
   --color-primary: #1e40af;
-  --color-teal: #0d9488;
-  --color-orange: #f97316;
-  --font-sans: var(--font-geist-sans);
+  --color-teal: var(--teal);
+  --color-orange: var(--orange);
+  --color-orange-light: var(--orange-light);
+  --color-green: var(--green);
+  --color-red: var(--red);
+  --font-sans: "Inter", var(--font-geist-sans), system-ui, sans-serif;
   --font-mono: var(--font-geist-mono);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Inter", var(--font-geist-sans), system-ui, sans-serif;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom animations */
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(249, 115, 22, 0.4), 0 0 40px rgba(249, 115, 22, 0.2);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(249, 115, 22, 0.6), 0 0 60px rgba(249, 115, 22, 0.3);
+    transform: scale(1.02);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) rotate(5deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(5deg);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes gradient-shift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradient-shift 3s ease-in-out infinite;
+}
+
+/* Gradient backgrounds */
+.gradient-orange {
+  background: linear-gradient(135deg, var(--orange) 0%, var(--orange-light) 100%);
+}
+
+.gradient-dark-to-orange {
+  background: linear-gradient(180deg, var(--background) 0%, rgba(249, 115, 22, 0.1) 100%);
+}
+
+.gradient-orange-glow {
+  background: radial-gradient(ellipse at center, rgba(249, 115, 22, 0.15) 0%, transparent 70%);
+}
+
+/* Card hover effects */
+.card-hover {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* Button styles */
+.btn-primary {
+  background: linear-gradient(135deg, var(--orange) 0%, var(--orange-light) 100%);
+  color: white;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 10px 30px rgba(249, 115, 22, 0.3);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 15px 40px rgba(249, 115, 22, 0.4);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--foreground);
+  border: 2px solid var(--foreground);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-outline:hover {
+  background: var(--foreground);
+  color: var(--background);
+}
+
+/* Section spacing */
+.section-padding {
+  padding-top: 150px;
+  padding-bottom: 150px;
+}
+
+@media (max-width: 768px) {
+  .section-padding {
+    padding-top: 80px;
+    padding-bottom: 80px;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--background-secondary);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--foreground-muted);
 }

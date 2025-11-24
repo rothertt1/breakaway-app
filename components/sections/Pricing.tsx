@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { Check } from 'lucide-react';
 
 const freeFeatures = [
@@ -54,9 +55,12 @@ export default function Pricing() {
               ))}
             </ul>
 
-            <button className="btn-outline w-full py-4 rounded-xl text-lg">
+            <Link
+              href="/auth"
+              className="btn-outline w-full py-4 rounded-xl text-lg inline-block text-center"
+            >
               Get Started Free
-            </button>
+            </Link>
           </div>
 
           {/* Premium Plan */}
@@ -83,9 +87,12 @@ export default function Pricing() {
               ))}
             </ul>
 
-            <button className="btn-primary w-full py-4 rounded-xl text-lg">
+            <Link
+              href="/auth"
+              className="btn-primary w-full py-4 rounded-xl text-lg inline-block text-center"
+            >
               Start 7-Day Free Trial
-            </button>
+            </Link>
           </div>
         </div>
 

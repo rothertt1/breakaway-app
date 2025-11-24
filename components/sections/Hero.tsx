@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { Shield, CheckCircle } from 'lucide-react';
 
 export default function Hero() {
@@ -11,7 +12,7 @@ export default function Hero() {
         <div className="hidden md:flex items-center gap-8">
           <a href="#how-it-works" className="text-foreground-muted hover:text-foreground transition-colors">How It Works</a>
           <a href="#pricing" className="text-foreground-muted hover:text-foreground transition-colors">Pricing</a>
-          <a href="#" className="text-foreground-muted hover:text-foreground transition-colors">Login</a>
+          <Link href="/auth" className="text-foreground-muted hover:text-foreground transition-colors">Login</Link>
         </div>
       </nav>
 
@@ -35,9 +36,12 @@ export default function Hero() {
             Breakaway is a daily companion for people ready to break free from gambling - built by people who&apos;ve been exactly where you are.
           </p>
 
-          <button className="btn-primary animate-pulse-glow text-xl md:text-2xl py-5 px-10 md:px-16 rounded-xl mb-6">
+          <Link
+            href="/auth"
+            className="btn-primary animate-pulse-glow text-xl md:text-2xl py-5 px-10 md:px-16 rounded-xl mb-6 inline-block"
+          >
             Start Your Recovery - Free
-          </button>
+          </Link>
 
           <p className="text-lg text-foreground-muted mb-6">
             No credit card. No judgment. Just support.

@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { X, Check } from 'lucide-react';
 
 const beforeItems = [
@@ -77,9 +78,12 @@ export default function Transformation() {
           <p className="text-2xl md:text-3xl font-bold text-white mb-8">
             This can be you. Start today.
           </p>
-          <button className="btn-primary text-xl md:text-2xl py-5 px-12 rounded-xl">
+          <Link
+            href="/auth"
+            className="btn-primary text-xl md:text-2xl py-5 px-12 rounded-xl inline-block"
+          >
             Begin Your Journey
-          </button>
+          </Link>
         </div>
       </div>
     </section>

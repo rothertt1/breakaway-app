@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { Shield, MessageCircle, CheckCircle } from 'lucide-react';
 
 export default function FinalCTA() {
@@ -22,9 +23,12 @@ export default function FinalCTA() {
             <p>Thousands of people just like you have taken this first step. Some of them felt hopeless. All of them are glad they started.</p>
           </div>
 
-          <button className="btn-primary animate-pulse-glow text-2xl md:text-[28px] py-6 md:py-7 px-16 md:px-20 rounded-2xl mb-8">
+          <Link
+            href="/auth"
+            className="btn-primary animate-pulse-glow text-2xl md:text-[28px] py-6 md:py-7 px-16 md:px-20 rounded-2xl mb-8 inline-block"
+          >
             Start My Recovery - Free
-          </button>
+          </Link>
 
           <p className="text-lg text-foreground-muted mb-12">
             Takes 2 minutes. No credit card required.

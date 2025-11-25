@@ -42,17 +42,16 @@ export default function AuthForm() {
         router.push('/dashboard');
       } else {
         // Sign up
-        const { error } = await supabase.auth.signUp({
+        const { data, error } = await supabase.auth.signUp({
           email,
           password,
-          options: {
-            emailRedirectTo: `${window.location.origin}/onboarding`,
-          },
         });
 
         if (error) throw error;
 
-        setMessage('Check your email for the confirmation link!');
+        // With email confirmation disabled, user is immediately logged in
+        // Redirect to onboarding
+        router.push('/onboarding');
       }
     } catch (err) {
       setError(err instanceof Error ? err.message : 'An error occurred');

@@ -59,12 +59,14 @@ export const useOnboarding = create<OnboardingState>()(
         const { frequency } = get()
 
         // Base monthly loss estimates by frequency
-        const baseMonthly = {
+        const frequencyMap: Record<string, number> = {
           'multiple-daily': 2000,
           'daily': 1200,
           'few-weekly': 500,
           'weekly': 200
-        }[frequency as keyof typeof baseMonthly] || 500
+        }
+
+        const baseMonthly = frequencyMap[frequency] || 500
 
         // Calculate 3-year projection with escalation
         const year1 = baseMonthly * 12

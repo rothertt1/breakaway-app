@@ -1,28 +1,16 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { useState, useEffect } from 'react'
 import { useOnboarding } from '@/lib/stores/onboardingStore'
 import ProgressBar from './ProgressBar'
+import LessonMockup from '@/components/mockups/LessonMockup'
+import TrackerMockup from '@/components/mockups/TrackerMockup'
+import CrisisCoachMockup from '@/components/mockups/CrisisCoachMockup'
+import CommunityMockup from '@/components/mockups/CommunityMockup'
 import { BookOpen, BarChart3, MessageCircle, Users } from 'lucide-react'
 
 export default function ProductShowcase() {
-  const [hasScrolledToBottom, setHasScrolledToBottom] = useState(false)
   const { nextStep, prevStep } = useOnboarding()
-
-  useEffect(() => {
-    const handleScroll = (e: Event) => {
-      const target = e.target as HTMLDivElement
-      const bottom = target.scrollHeight - target.scrollTop <= target.clientHeight + 100
-      if (bottom && !hasScrolledToBottom) {
-        setHasScrolledToBottom(true)
-      }
-    }
-
-    const scrollContainer = document.getElementById('showcase-scroll')
-    scrollContainer?.addEventListener('scroll', handleScroll)
-    return () => scrollContainer?.removeEventListener('scroll', handleScroll)
-  }, [hasScrolledToBottom])
 
   return (
     <motion.div
@@ -30,197 +18,185 @@ export default function ProductShowcase() {
       animate={{ opacity: 1, x: 0 }}
       exit={{ opacity: 0, x: -20 }}
       transition={{ duration: 0.3 }}
-      className="min-h-screen bg-slate-900 px-6 py-8 md:px-8 flex flex-col"
+      className="min-h-screen bg-slate-950 px-6 py-8 md:px-8"
     >
-      <div className="max-w-3xl mx-auto w-full flex flex-col flex-1">
+      <div className="max-w-3xl mx-auto">
         <ProgressBar currentStep={3} totalSteps={5} />
 
-        <h2 className="text-3xl md:text-4xl font-bold text-white mb-3">
-          Your Personalized Recovery Plan
-        </h2>
-        <p className="text-gray-400 mb-8">
-          Based on your goals, here's what Breakaway provides:
-        </p>
+        {/* Header */}
+        <div className="mb-8 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-3">
+            Your Personalized Recovery Plan
+          </h2>
+          <p className="text-gray-400">
+            Based on your goals, here's what Breakaway provides:
+          </p>
+        </div>
 
-        {/* Scrollable Content */}
-        <div
-          id="showcase-scroll"
-          className="flex-1 overflow-y-auto space-y-10 pb-8 scroll-smooth"
-        >
-          {/* Section 1: Daily Lessons */}
-          <motion.div
+        {/* Sections */}
+        <div className="space-y-12 pb-8">
+          {/* Daily Lessons */}
+          <motion.section
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
             className="space-y-4"
           >
-            <div className="flex items-center gap-3 mb-4">
-              <BookOpen className="w-8 h-8 text-orange-500" />
-              <h3 className="text-2xl font-bold text-white">Daily Lessons</h3>
-            </div>
-
-            {/* Mockup Screenshot */}
-            <div className="w-full h-[200px] bg-gradient-to-br from-slate-800 to-slate-700 rounded-lg border border-slate-600 shadow-xl flex items-center justify-center overflow-hidden">
-              <div className="w-full h-full p-6 space-y-3">
-                <div className="h-8 bg-orange-500/20 rounded w-3/4"></div>
-                <div className="h-4 bg-slate-600 rounded w-full"></div>
-                <div className="h-4 bg-slate-600 rounded w-5/6"></div>
-                <div className="h-4 bg-slate-600 rounded w-4/5"></div>
-                <div className="mt-4 h-10 bg-orange-500/30 rounded-lg w-1/2"></div>
+            <div className="flex items-center gap-3">
+              <div className="w-12 h-12 rounded-2xl bg-orange-500/10 border border-orange-500/20 flex items-center justify-center">
+                <BookOpen className="w-6 h-6 text-orange-500" />
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold text-slate-100">Daily Lessons</h3>
+                <p className="text-sm text-slate-400">5 minutes that change everything</p>
               </div>
             </div>
 
-            <div className="space-y-2 text-gray-300">
-              <p className="flex items-start gap-2">
-                <span className="text-orange-500 font-semibold">Day 1:</span>
-                "Why Your Brain Can't Stop Betting"
-              </p>
-              <p className="flex items-start gap-2">
-                <span className="text-orange-500 font-semibold">Day 7:</span>
-                "Identifying Your Triggers"
-              </p>
-              <p className="flex items-start gap-2">
-                <span className="text-orange-500 font-semibold">Day 14:</span>
-                "The 5-Minute Delay Technique"
-              </p>
-              <p className="flex items-start gap-2">
-                <span className="text-orange-500 font-semibold">Day 30:</span>
-                "Rewiring Your Reward System"
+            <LessonMockup />
+
+            <div className="space-y-2 px-4">
+              <div className="flex items-center gap-2 text-sm text-slate-400">
+                <span className="w-1.5 h-1.5 rounded-full bg-orange-500" />
+                <span>Day 1: "Why Your Brain Can't Stop Betting"</span>
+              </div>
+              <div className="flex items-center gap-2 text-sm text-slate-400">
+                <span className="w-1.5 h-1.5 rounded-full bg-orange-500" />
+                <span>Day 7: "Identifying Your Triggers"</span>
+              </div>
+              <div className="flex items-center gap-2 text-sm text-slate-400">
+                <span className="w-1.5 h-1.5 rounded-full bg-orange-500" />
+                <span>Day 14: "The 5-Minute Delay Technique"</span>
+              </div>
+              <div className="flex items-center gap-2 text-sm text-slate-400">
+                <span className="w-1.5 h-1.5 rounded-full bg-orange-500" />
+                <span>Day 30: "Rewiring Your Reward System"</span>
+              </div>
+              <p className="text-xs text-slate-500 pt-2">
+                365 days of CBT-based recovery content
               </p>
             </div>
+          </motion.section>
 
-            <p className="text-sm text-gray-400 italic">
-              365 days of CBT-based recovery content • 5 minutes per day
-            </p>
-          </motion.div>
-
-          {/* Section 2: Urge Tracking */}
-          <motion.div
+          {/* Urge Tracking */}
+          <motion.section
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
             className="space-y-4"
           >
-            <div className="flex items-center gap-3 mb-4">
-              <BarChart3 className="w-8 h-8 text-orange-500" />
-              <h3 className="text-2xl font-bold text-white">Urge Tracking</h3>
-            </div>
-
-            {/* Mockup Screenshot */}
-            <div className="w-full h-[200px] bg-gradient-to-br from-slate-800 to-slate-700 rounded-lg border border-slate-600 shadow-xl flex items-center justify-center overflow-hidden">
-              <div className="w-full h-full p-6 flex items-end justify-around gap-2">
-                <div className="w-full h-3/4 bg-orange-500/40 rounded-t"></div>
-                <div className="w-full h-1/2 bg-orange-500/60 rounded-t"></div>
-                <div className="w-full h-1/3 bg-green-500/60 rounded-t"></div>
-                <div className="w-full h-1/4 bg-green-500/80 rounded-t"></div>
+            <div className="flex items-center gap-3">
+              <div className="w-12 h-12 rounded-2xl bg-orange-500/10 border border-orange-500/20 flex items-center justify-center">
+                <BarChart3 className="w-6 h-6 text-orange-500" />
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold text-slate-100">Urge Tracking</h3>
+                <p className="text-sm text-slate-400">See your progress visualized</p>
               </div>
             </div>
 
-            <div className="space-y-2 text-gray-300">
-              <p>✓ Log every urge (even when you resist)</p>
-              <p>✓ See patterns emerge over time</p>
-              <p>✓ Watch urges get weaker</p>
-              <p>✓ Track money you're NOT losing</p>
-            </div>
+            <TrackerMockup />
 
-            <p className="text-sm text-gray-400 italic">
-              Real-time insights into your recovery
-            </p>
-          </motion.div>
+            <ul className="space-y-2 px-4">
+              <li className="flex items-center gap-2 text-sm text-slate-400">
+                <span className="text-green-400">✓</span>
+                <span>Log every urge (even when you resist)</span>
+              </li>
+              <li className="flex items-center gap-2 text-sm text-slate-400">
+                <span className="text-green-400">✓</span>
+                <span>See patterns emerge over time</span>
+              </li>
+              <li className="flex items-center gap-2 text-sm text-slate-400">
+                <span className="text-green-400">✓</span>
+                <span>Watch urges get weaker</span>
+              </li>
+              <li className="flex items-center gap-2 text-sm text-slate-400">
+                <span className="text-green-400">✓</span>
+                <span>Track money you're NOT losing</span>
+              </li>
+            </ul>
+          </motion.section>
 
-          {/* Section 3: Crisis Support */}
-          <motion.div
+          {/* Crisis Support */}
+          <motion.section
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
             className="space-y-4"
           >
-            <div className="flex items-center gap-3 mb-4">
-              <MessageCircle className="w-8 h-8 text-orange-500" />
-              <h3 className="text-2xl font-bold text-white">24/7 Crisis Support</h3>
-            </div>
-
-            {/* Mockup Screenshot */}
-            <div className="w-full h-[200px] bg-gradient-to-br from-slate-800 to-slate-700 rounded-lg border border-slate-600 shadow-xl flex items-center justify-center overflow-hidden">
-              <div className="w-full h-full p-6 space-y-3">
-                <div className="flex justify-end">
-                  <div className="bg-orange-500/30 rounded-lg p-3 max-w-[70%]">
-                    <div className="h-3 bg-orange-500/50 rounded w-32"></div>
-                  </div>
-                </div>
-                <div className="flex justify-start">
-                  <div className="bg-slate-600/50 rounded-lg p-3 max-w-[70%]">
-                    <div className="h-3 bg-slate-500 rounded w-40 mb-2"></div>
-                    <div className="h-3 bg-slate-500 rounded w-36"></div>
-                  </div>
-                </div>
-                <div className="flex justify-end">
-                  <div className="bg-orange-500/30 rounded-lg p-3 max-w-[70%]">
-                    <div className="h-3 bg-orange-500/50 rounded w-28"></div>
-                  </div>
-                </div>
+            <div className="flex items-center gap-3">
+              <div className="w-12 h-12 rounded-2xl bg-orange-500/10 border border-orange-500/20 flex items-center justify-center">
+                <MessageCircle className="w-6 h-6 text-orange-500" />
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold text-slate-100">24/7 Crisis Support</h3>
+                <p className="text-sm text-slate-400">Never face an urge alone</p>
               </div>
             </div>
 
-            <div className="space-y-2 text-gray-300">
-              <p>✓ Instant support when tempted</p>
-              <p>✓ AI crisis coach trained in CBT</p>
-              <p>✓ Available anytime, anywhere</p>
-              <p>✓ Never face an urge alone</p>
-            </div>
+            <CrisisCoachMockup />
 
-            <p className="text-sm text-gray-400 italic">
-              Help when you need it most
-            </p>
-          </motion.div>
+            <ul className="space-y-2 px-4">
+              <li className="flex items-center gap-2 text-sm text-slate-400">
+                <span className="text-green-400">✓</span>
+                <span>Instant support when tempted</span>
+              </li>
+              <li className="flex items-center gap-2 text-sm text-slate-400">
+                <span className="text-green-400">✓</span>
+                <span>AI crisis coach trained in CBT</span>
+              </li>
+              <li className="flex items-center gap-2 text-sm text-slate-400">
+                <span className="text-green-400">✓</span>
+                <span>Available anytime, anywhere</span>
+              </li>
+              <li className="flex items-center gap-2 text-sm text-slate-400">
+                <span className="text-green-400">✓</span>
+                <span>Help when you need it most</span>
+              </li>
+            </ul>
+          </motion.section>
 
-          {/* Section 4: Community */}
-          <motion.div
+          {/* Community */}
+          <motion.section
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4 }}
             className="space-y-4"
           >
-            <div className="flex items-center gap-3 mb-4">
-              <Users className="w-8 h-8 text-orange-500" />
-              <h3 className="text-2xl font-bold text-white">Community</h3>
-            </div>
-
-            {/* Mockup Screenshot */}
-            <div className="w-full h-[200px] bg-gradient-to-br from-slate-800 to-slate-700 rounded-lg border border-slate-600 shadow-xl flex items-center justify-center overflow-hidden">
-              <div className="w-full h-full p-6 space-y-3">
-                <div className="space-y-2">
-                  {[1, 2, 3].map((i) => (
-                    <div key={i} className="flex gap-3">
-                      <div className="w-10 h-10 rounded-full bg-slate-600"></div>
-                      <div className="flex-1 space-y-1">
-                        <div className="h-3 bg-slate-600 rounded w-1/4"></div>
-                        <div className="h-3 bg-slate-600/60 rounded w-full"></div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
+            <div className="flex items-center gap-3">
+              <div className="w-12 h-12 rounded-2xl bg-orange-500/10 border border-orange-500/20 flex items-center justify-center">
+                <Users className="w-6 h-6 text-orange-500" />
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold text-slate-100">Community</h3>
+                <p className="text-sm text-slate-400">You're not alone in this</p>
               </div>
             </div>
 
-            <div className="space-y-2 text-gray-300">
-              <p>✓ Anonymous support forum</p>
-              <p>✓ Share wins and struggles</p>
-              <p>✓ Learn from others' journeys</p>
-              <p>✓ Find accountability partners</p>
-            </div>
+            <CommunityMockup />
 
-            <p className="text-sm text-gray-400 italic">
-              You're not alone in this
-            </p>
-          </motion.div>
-
-          {/* Bottom spacing for button */}
-          <div className="h-24"></div>
+            <ul className="space-y-2 px-4">
+              <li className="flex items-center gap-2 text-sm text-slate-400">
+                <span className="text-green-400">✓</span>
+                <span>Anonymous support forum</span>
+              </li>
+              <li className="flex items-center gap-2 text-sm text-slate-400">
+                <span className="text-green-400">✓</span>
+                <span>Share wins and struggles</span>
+              </li>
+              <li className="flex items-center gap-2 text-sm text-slate-400">
+                <span className="text-green-400">✓</span>
+                <span>Learn from others' journeys</span>
+              </li>
+              <li className="flex items-center gap-2 text-sm text-slate-400">
+                <span className="text-green-400">✓</span>
+                <span>Find accountability partners</span>
+              </li>
+            </ul>
+          </motion.section>
         </div>
 
-        {/* Continue Button - Fixed at bottom or shown after scroll */}
-        <div className={`pt-6 bg-slate-900 transition-opacity duration-300 ${hasScrolledToBottom ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
+        {/* CTA */}
+        <div className="pt-6">
           <div className="flex items-center gap-4">
             <button
               onClick={prevStep}
@@ -230,9 +206,9 @@ export default function ProductShowcase() {
             </button>
             <button
               onClick={nextStep}
-              className="flex-1 py-4 rounded-lg text-lg font-semibold bg-gradient-to-r from-orange-500 to-orange-600 text-white hover:opacity-90 shadow-lg transition-opacity"
+              className="flex-1 py-4 rounded-xl text-lg font-semibold bg-gradient-to-r from-orange-500 to-orange-600 text-white hover:opacity-90 shadow-lg transition-all shadow-orange-500/25"
             >
-              SEE THE SCIENCE
+              See the Science
             </button>
           </div>
         </div>
